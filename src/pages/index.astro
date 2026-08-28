@@ -1,20 +1,543 @@
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <!-- 網站名稱與標題設定 -->
-  <title>遊戲舵手｜精準引航 掌控各大遊戲娛樂情報</title>
+---
+const pageTitle = "遊戲舵手｜精準引航 掌控各大遊戲娛樂情報";
+const siteDescription = "男塾式嚴酷評測！不講廢話、拒絕灌水，直擊出金效率、流水限制與真實現金版真相！";
+---
 
-  <!-- 讀取剛剛上傳的 Favicon -->
-  <link rel="icon" type="image/png" href="/favicon.png" />
-  
-  <!-- 讓 Google 搜尋結果正確顯示「遊戲舵手」 -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "遊戲舵手",
-    "url": "https://gameplay543.pages.dev/"
-  }
-  </script>
-</head>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={siteDescription} />
+    <link rel="canonical" href="https://gameplay543.pages.dev/" />
+    
+    <!-- 引入 Favicon 圖示 -->
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <!-- Google 搜尋結果顯示正確站名 (Schema.org) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "遊戲舵手",
+      "url": "https://gameplay543.pages.dev/"
+    }
+    </script>
+    
+    <!-- 引入 Google 字型（黑體與熱血風格標題） -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@700;900&display=swap" rel="stylesheet">
+
+    <!-- 內嵌 SEO / GSC 驗證與基本架構 -->
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={siteDescription} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://gameplay543.pages.dev/" />
+
+    <style>
+      :root {
+        --bg-black: #0d0d0d;
+        --card-dark: #18181c;
+        --crimson-red: #dc2626;
+        --gold: #f59e0b;
+        --text-white: #f8fafc;
+        --text-gray: #94a3b8;
+        --border-red: #991b1b;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: 'Noto Sans TC', -apple-system, sans-serif;
+      }
+
+      body {
+        background-color: var(--bg-black);
+        color: var(--text-white);
+        line-height: 1.7;
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Header */
+      header {
+        background: #000;
+        border-bottom: 3px solid var(--crimson-red);
+        padding: 15px 0;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .brand-title {
+        font-size: 1.8rem;
+        font-weight: 900;
+        color: var(--text-white);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+
+      .brand-title span {
+        color: var(--crimson-red);
+        background: var(--text-white);
+        padding: 2px 8px;
+        margin-left: 5px;
+        border-radius: 2px;
+      }
+
+      /* Hero Banner - 男塾感宣戰 */
+      .hero-section {
+        background: linear-gradient(180deg, rgba(220, 38, 38, 0.2) 0%, rgba(13, 13, 13, 1) 100%), #000;
+        text-align: center;
+        padding: 60px 20px 40px;
+        border-bottom: 1px solid #333;
+      }
+
+      .hero-tag {
+        display: inline-block;
+        background: var(--crimson-red);
+        color: #fff;
+        font-weight: 900;
+        padding: 4px 12px;
+        font-size: 0.9rem;
+        margin-bottom: 15px;
+        letter-spacing: 1px;
+      }
+
+      .hero-title {
+        font-size: 2.5rem;
+        font-weight: 900;
+        margin-bottom: 15px;
+        color: #fff;
+        text-shadow: 2px 2px 0px var(--crimson-red);
+      }
+
+      .hero-desc {
+        color: var(--text-gray);
+        max-width: 750px;
+        margin: 0 auto 20px;
+        font-size: 1.05rem;
+      }
+
+      /* 熱血警語 */
+      .warning-banner {
+        background: #1f1905;
+        border: 2px solid var(--gold);
+        color: #fef08a;
+        padding: 15px;
+        border-radius: 4px;
+        margin: 30px 0;
+        font-size: 0.9rem;
+      }
+
+      /* 排行榜 Table - 高效率強烈視覺 */
+      .section-header {
+        border-left: 6px solid var(--crimson-red);
+        padding-left: 12px;
+        margin: 40px 0 20px;
+      }
+
+      .section-header h2 {
+        font-size: 1.8rem;
+        font-weight: 900;
+      }
+
+      .ranking-table-wrapper {
+        overflow-x: auto;
+        margin-bottom: 40px;
+      }
+
+      .ranking-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: var(--card-dark);
+        border: 1px solid #333;
+        text-align: center;
+      }
+
+      .ranking-table th {
+        background: #000;
+        color: var(--gold);
+        padding: 15px;
+        border-bottom: 2px solid var(--crimson-red);
+        font-size: 1rem;
+      }
+
+      .ranking-table td {
+        padding: 15px;
+        border-bottom: 1px solid #27272a;
+        font-size: 0.95rem;
+      }
+
+      .rank-num {
+        font-size: 1.5rem;
+        font-weight: 900;
+        color: var(--gold);
+      }
+
+      .rank-1 { color: #ef4444; font-size: 1.8rem; }
+
+      .score-badge {
+        background: var(--crimson-red);
+        color: #fff;
+        font-weight: 900;
+        padding: 4px 8px;
+        border-radius: 4px;
+      }
+
+      /* 各大名門對決卡片 */
+      .review-card {
+        background: var(--card-dark);
+        border: 1px solid #27272a;
+        border-top: 4px solid var(--crimson-red);
+        padding: 25px;
+        margin-bottom: 30px;
+        border-radius: 4px;
+      }
+
+      .review-card h3 {
+        font-size: 1.5rem;
+        color: var(--gold);
+        margin-bottom: 10px;
+      }
+
+      .review-meta {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+        background: #000;
+        padding: 10px 15px;
+        margin: 15px 0;
+        border-radius: 4px;
+        font-size: 0.9rem;
+      }
+
+      .review-meta span {
+        color: var(--text-gray);
+      }
+
+      .review-meta strong {
+        color: #fff;
+      }
+
+      .target-box {
+        background: rgba(220, 38, 38, 0.1);
+        border-left: 3px solid var(--crimson-red);
+        padding: 10px 15px;
+        margin-top: 15px;
+        font-size: 0.95rem;
+      }
+
+      /* 挑選條件五大原則 (男塾奧義) */
+      .rule-box {
+        background: #111;
+        border: 1px solid #333;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+      }
+
+      .rule-box h4 {
+        color: var(--crimson-red);
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+      }
+
+      /* FAQ 區塊 */
+      .faq-item {
+        background: var(--card-dark);
+        border: 1px solid #27272a;
+        padding: 20px;
+        margin-bottom: 15px;
+      }
+
+      .faq-item h4 {
+        color: var(--gold);
+        margin-bottom: 8px;
+        font-size: 1.1rem;
+      }
+
+      .faq-item p {
+        color: var(--text-gray);
+        font-size: 0.95rem;
+      }
+
+      /* Footer */
+      footer {
+        background: #000;
+        border-top: 2px solid #333;
+        padding: 40px 0 20px;
+        text-align: center;
+        color: var(--text-gray);
+        font-size: 0.85rem;
+        margin-top: 60px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- 頂部霸權 Header -->
+    <header>
+      <div class="container header-content">
+        <div class="brand-title">遊戲<span>舵手</span></div>
+        <div style="color: var(--gold); font-size: 0.85rem; font-weight: 700;">2026 娛樂城頂點決戰</div>
+      </div>
+    </header>
+
+    <!-- Hero 主視覺宣戰聲明 -->
+    <section class="hero-section">
+      <div class="container">
+        <span class="hero-tag">2026 台灣線上娛樂城排行與挑選指南</span>
+        <h1 class="hero-title">拒絕虛浮廣告！直擊出金與真實現金版真相</h1>
+        <p class="hero-desc">
+          搜尋「娛樂城推薦」的人，真正想了解的是提款好不好處理、活動規則清不清楚、遊戲選擇夠不夠，以及遇到問題時客服是否願意處理。
+          本篇不以品牌知名度排序，而是從玩家實際條件切入，逐一拆解出金效率與流水條款！
+        </p>
+      </div>
+    </section>
+
+    <main class="container">
+
+      <!-- 理性與風險警語 -->
+      <div class="warning-banner">
+        <strong>⚠️ 頂點決戰前注意事項：</strong> 本文整理之優惠、提款時間及平台資訊，可能因活動、審核流程或平台規則調整而變化。實際使用前請務必再次確認最新公告。娛樂遊戲具有風險，請依自身經濟能力設定合理預算，絕不投入超出承受範圍之金額！
+      </div>
+
+      <!-- 2026 娛樂城排行榜 Table -->
+      <section>
+        <div class="section-header">
+          <h2>2026 娛樂城推薦排行榜</h2>
+        </div>
+
+        <div class="ranking-table-wrapper">
+          <table class="ranking-table">
+            <thead>
+              <tr>
+                <th>排名</th>
+                <th>娛樂城</th>
+                <th>主要特色</th>
+                <th>首儲優惠參考</th>
+                <th>參考出金時間</th>
+                <th>綜合評分</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="rank-num rank-1">1</span></td>
+                <td><strong>鉅城娛樂城</strong></td>
+                <td>出金效率、遊戲種類完整</td>
+                <td>首儲 100%</td>
+                <td>約 3 分鐘</td>
+                <td><span class="score-badge">9.6</span></td>
+              </tr>
+              <tr>
+                <td><span class="rank-num">2</span></td>
+                <td><strong>富遊娛樂城</strong></td>
+                <td>真人遊戲選擇較多</td>
+                <td>首儲 88%</td>
+                <td>約 5 分鐘</td>
+                <td><span class="score-badge">9.2</span></td>
+              </tr>
+              <tr>
+                <td><span class="rank-num">3</span></td>
+                <td><strong>TU娛樂城</strong></td>
+                <td>體育、電競項目較完整</td>
+                <td>首儲 80%</td>
+                <td>約 6 分鐘</td>
+                <td><span class="score-badge">8.9</span></td>
+              </tr>
+              <tr>
+                <td><span class="rank-num">4</span></td>
+                <td><strong>RG娛樂城</strong></td>
+                <td>手機操作介面簡潔</td>
+                <td>首儲 75%</td>
+                <td>約 8 分鐘</td>
+                <td><span class="score-badge">8.6</span></td>
+              </tr>
+              <tr>
+                <td><span class="rank-num">5</span></td>
+                <td><strong>3A娛樂城</strong></td>
+                <td>操作流程與客服資訊完整</td>
+                <td>首儲 70%</td>
+                <td>約 10 分鐘</td>
+                <td><span class="score-badge">8.3</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 五大平台詳細評比 -->
+      <section>
+        <div class="section-header">
+          <h2>五大名門平台 深度剖析</h2>
+        </div>
+
+        <!-- 鉅城 -->
+        <div class="review-card">
+          <h3>第 1 名｜鉅城娛樂城（綜合評比霸主）</h3>
+          <p>將鉅城娛樂城排在第一，主要考量的是提款效率、遊戲完整度以及整體使用條件。參考提款處理時間約為 3 分鐘，並採系統審核流程。遊戲涵蓋老虎機、真人百家樂、體育、捕魚及棋牌等。</p>
+          <div class="review-meta">
+            <span>首儲參考：<strong>100%</strong></span>
+            <span>參考出金：<strong>約 3 分鐘</strong></span>
+            <span>審核機制：<strong>系統審核</strong></span>
+          </div>
+          <div class="target-box">
+            <strong>適合比較的族群：</strong> 重視遊戲種類與提款效率，希望真人、電子、體育等不同類型集中選擇的玩家。
+          </div>
+        </div>
+
+        <!-- 富遊 -->
+        <div class="review-card">
+          <h3>第 2 名｜富遊娛樂城（真人特化極限）</h3>
+          <p>主要特色落在真人遊戲與桌上遊戲。若平常主要接觸百家樂等真人遊戲，可以進一步比較平台提供的桌台數量、場館選擇與操作介面。領取活動前請務必看清流水與有效投注計算。</p>
+          <div class="review-meta">
+            <span>首儲參考：<strong>88%</strong></span>
+            <span>參考出金：<strong>約 5 分鐘</strong></span>
+            <span>核心強項：<strong>真人百家樂桌台數</strong></span>
+          </div>
+          <div class="target-box">
+            <strong>適合比較的族群：</strong> 主要玩真人百家樂等桌上遊戲，並且在意桌台與場館選擇的玩家。
+          </div>
+        </div>
+
+        <!-- TU -->
+        <div class="review-card">
+          <h3>第 3 名｜TU娛樂城（賽事與電競強豪）</h3>
+          <p>如果平常較關注體育賽事或電競投注，TU娛樂城的特色會比較符合需求。體育項目涵蓋 MLB、NBA、英超，並提供 LOL、CS 等電競項目。賽事覆蓋範圍與盤口更新速度是其重點。</p>
+          <div class="review-meta">
+            <span>首儲參考：<strong>80%</strong></span>
+            <span>參考出金：<strong>約 6 分鐘</strong></span>
+            <span>核心強項：<strong>體育盤口與電競賽事</strong></span>
+          </div>
+          <div class="target-box">
+            <strong>適合比較的族群：</strong> 主要關注體育賽事與電競項目的玩家。
+          </div>
+        </div>
+
+        <!-- RG -->
+        <div class="review-card">
+          <h3>第 4 名｜RG娛樂城（極簡手機極限）</h3>
+          <p>比較突出的特色是手機端的操作體驗。介面設計相對簡單，常用功能較集中。適合習慣直接使用手機瀏覽器操作，希望快速找到需要的玩家。</p>
+          <div class="review-meta">
+            <span>首儲參考：<strong>75%</strong></span>
+            <span>參考出金：<strong>約 8 分鐘</strong></span>
+            <span>核心強項：<strong>行動端UI流暢度</strong></span>
+          </div>
+          <div class="target-box">
+            <strong>適合比較的族群：</strong> 平常以手機瀏覽器為主要操作方式，重視介面簡單的使用者。
+          </div>
+        </div>
+
+        <!-- 3A -->
+        <div class="review-card">
+          <h3>第 5 名｜3A娛樂城（新手入門指南）</h3>
+          <p>註冊、儲值與提款相關資訊相對容易理解。雖然參考出金時間約 10 分鐘相對較慢，但對第一次接觸線上娛樂平台的人來說，弄清楚帳戶與資金規則比單純比較「送多少」更重要。</p>
+          <div class="review-meta">
+            <span>首儲參考：<strong>70%</strong></span>
+            <span>參考出金：<strong>約 10 分鐘</strong></span>
+            <span>核心強項：<strong>規則透明度與流程導引</strong></span>
+          </div>
+          <div class="target-box">
+            <strong>適合比較的族群：</strong> 第一次接觸線上娛樂平台，重視操作流程與規則是否容易理解的使用者。
+          </div>
+        </div>
+      </section>
+
+      <!-- 娛樂城挑選 5 大條件 -->
+      <section>
+        <div class="section-header">
+          <h2>娛樂城怎麼挑？5 個比排行榜更重要的條件</h2>
+        </div>
+
+        <div class="rule-box">
+          <h4>1. 別被首儲優惠吸引，先看提款規則</h4>
+          <p>比較娛樂城時，判斷順序建議改為：<strong>提款規則 → 流水條件 → 遊戲內容 → 客服 → 優惠</strong>。先確認資金進出與活動限制，再去比較優惠高低才合理。</p>
+        </div>
+
+        <div class="rule-box">
+          <h4>2. 現金版與信用版，先搞清楚資金怎麼結算</h4>
+          <p><strong>現金版</strong>先存後玩，資金流向清晰；<strong>信用版</strong>涉及代理授信與固定週期結算。不熟悉信用制度者，強烈建議從規則明確的現金版開始了解。</p>
+        </div>
+
+        <div class="rule-box">
+          <h4>3. 遊戲商越多，不等於平台越值得選</h4>
+          <p>直接問自己：「我平常真正會玩的遊戲，這家到底有沒有？」老虎機看 PG、Pragmatic、JILI；真人看 Evolution、SA、歐博。適合自己最重要。</p>
+        </div>
+
+        <div class="rule-box">
+          <h4>4. 流水倍數不能單獨看，要連活動條款一起理解</h4>
+          <p>不要只看 15 倍流水這種表面數字。必須確認哪些遊戲計入有效投注、和局算不算、是否有最低提款限額等細節條款。</p>
+        </div>
+
+        <div class="rule-box">
+          <h4>5. 客服好不好，不如自己實際測試一次</h4>
+          <p>正式使用前先向客服詢問具體問題（如流水計算、提款限制），親自觀察回覆速度與解答精準度，比看五星評論更真實。</p>
+        </div>
+      </section>
+
+      <!-- FAQ 常見問題 -->
+      <section>
+        <div class="section-header">
+          <h2>娛樂城推薦 FAQ｜常見問題解答</h2>
+        </div>
+
+        <div class="faq-item">
+          <h4>Q：娛樂城推薦排行榜是怎麼評比的？</h4>
+          <p>主要從提款處理時間、流水條件、遊戲種類與客服服務進行比較，其中資金進出權重最高。可作為初步篩選工具。</p>
+        </div>
+
+        <div class="faq-item">
+          <h4>Q：現金版和信用版有什麼差別？</h4>
+          <p>現金版先儲值再使用，額度控管明確；信用版涉及代理額度與週期結算。若不熟悉信用責任，建議先搞懂結算機制。</p>
+        </div>
+
+        <div class="faq-item">
+          <h4>Q：富遊娛樂城和 RG 富遊娛樂城是同一家嗎？</h4>
+          <p>不能只憑名稱判定。註冊前務必核對網址、官方資訊與客服資料，防範釣魚或仿冒網站。</p>
+        </div>
+
+        <div class="faq-item">
+          <h4>Q：提款被退回可能有哪些原因？</h4>
+          <p>常見原因包含：流水未完成、帳戶資料不一致、帳戶需重新驗證等。被退回時請先釐清原因，切勿重複盲目提交。</p>
+        </div>
+
+        <div class="faq-item">
+          <h4>Q：怎麼判斷推薦文章是不是「灌水文」？</h4>
+          <p>觀察文章是否專注於客觀條件而非一味吹捧。若只強調最快最新最高，卻避談流水與提款審核，該文章的參考價值便非常有限。</p>
+        </div>
+      </section>
+
+      <!-- 結論 -->
+      <div style="background: #000; border: 1px solid var(--crimson-red); padding: 25px; margin-top: 40px; text-align: center;">
+        <h3 style="color: var(--gold); margin-bottom: 10px;">結語｜娛樂城推薦，並非優惠越高越好</h3>
+        <p style="color: var(--text-gray); font-size: 0.95rem;">
+          沒有任何一個娛樂城適合所有人，真正重要的是平台條件是否符合你的需求與風險承受能力。請設定好合理的娛樂預算，理性體驗！
+        </p>
+      </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <p><strong>遊戲舵手</strong> - 2026 娛樂城頂點決戰與機率分析網</p>
+        <p style="margin-top: 5px;">&copy; 2026 遊戲舵手. All rights reserved. 僅供資訊交流與客觀條件比較。</p>
+      </div>
+    </footer>
+
+  </body>
+</html>
